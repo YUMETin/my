@@ -1,0 +1,333 @@
+﻿ <!DOCTYPE html>
+ <html lang="zh-CN">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>陈梦婷 | SLG Game Video Designer</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+ <style>
+ *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+ html{scroll-behavior:smooth}
+ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0c;color:#e8e8ea;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+ a{color:inherit;text-decoration:none}
+ img{display:block;max-width:100%}
+ ::-webkit-scrollbar{width:6px}
+ ::-webkit-scrollbar-track{background:#0a0a0c}
+ ::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+ ::-webkit-scrollbar-thumb:hover{background:#555}
+ .container{max-width:1700px;margin:0 auto;padding:0 48px}
+ .section-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-bottom:12px;font-weight:500}
+ .section-title{font-size:32px;font-weight:600;letter-spacing:-.5px;margin-bottom:8px;color:#f0f0f2}
+ .section-sub{font-size:15px;color:#888;font-weight:400;margin-bottom:60px}
+ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .4s}
+ nav.scrolled{background:rgba(10,10,12,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:14px 48px;border-bottom:1px solid rgba(255,255,255,.04)}
+ .nav-logo{font-size:20px;font-weight:600;letter-spacing:-.3px}
+ .nav-logo span{color:#666;font-weight:300}
+ .nav-links{display:flex;gap:40px;align-items:center}
+ .nav-links a{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#999;transition:color .3s;font-weight:500}
+ .nav-links a:hover{color:#f0f0f2}
+ .nav-cta{padding:10px 28px;border:1px solid rgba(255,255,255,.15);border-radius:30px;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#e8e8ea;transition:all .3s;background:transparent;cursor:pointer;font-weight:500}
+ .nav-cta:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3)}
+ .hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+ .hero-bg{position:absolute;inset:0;z-index:0}
+ .hero-bg video{width:100%;height:100%;object-fit:cover;opacity:.5}
+ .hero-fallback{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 50% at 30% 40%,#1a1a2e,transparent),radial-gradient(ellipse 50% 40% at 70% 60%,#16213e,transparent),#0a0a0c;display:block}
+ .hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px;opacity:.5}
+ .hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(10,10,12,.3) 0%,rgba(10,10,12,.1) 40%,rgba(10,10,12,.6) 80%,rgba(10,10,12,1) 100%)}
+ .hero-content{position:relative;z-index:3;text-align:center;max-width:900px;padding:0 24px}
+ .hero-tag{display:inline-block;padding:6px 20px;border:1px solid rgba(255,255,255,.08);border-radius:20px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:32px;font-weight:500}
+ .hero h1{font-size:clamp(48px,6vw,80px);font-weight:700;letter-spacing:-1.5px;line-height:1.05;margin-bottom:24px;color:#f0f0f2}
+ 
+ .hero p{font-size:17px;color:#888;max-width:600px;margin:0 auto 40px;font-weight:400;line-height:1.7}
+ .hero-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:30px;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#e8e8ea;transition:all .3s;cursor:pointer;font-weight:500}
+ .hero-cta:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25)}
+ .hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;color:#666;font-size:11px;letter-spacing:2px;text-transform:uppercase;animation:fadeInUp 1.5s 1s both}
+ .hero-scroll .line{width:1px;height:40px;background:linear-gradient(to bottom,#666,transparent)}
+ @keyframes fadeInUp{from{opacity:0;transform:translateX(-50%) translateY(16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+ .about{padding:140px 0 100px}
+ .about-inner{display:grid;grid-template-columns:280px 1fr 240px;gap:60px;align-items:start}
+ .about-avatar{width:280px;height:340px;border-radius:4px;overflow:hidden;background:#18181b;position:relative}
+ .about-avatar .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;color:#333;background:linear-gradient(135deg,#18181b,#1a1a2e);letter-spacing:0;line-height:1}
+ .about-text h3{font-size:26px;font-weight:600;letter-spacing:-.3px;margin-bottom:4px}
+ .about-text .role{font-size:14px;color:#888;margin-bottom:24px;letter-spacing:.5px}
+ .about-text .bio{font-size:15px;color:#aaa;line-height:1.8;margin-bottom:32px;max-width:620px}
+ .about-text .bio strong{color:#e8e8ea;font-weight:500}
+ .about-stats{display:flex;gap:40px;margin-bottom:32px}
+ .about-stat h4{font-size:28px;font-weight:600;letter-spacing:-.5px;color:#f0f0f2}
+ .about-stat p{font-size:12px;color:#666;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+ .about-contact{display:flex;flex-direction:column;gap:16px}
+ .about-contact-item{display:flex;align-items:center;gap:10px;font-size:13px;color:#888;transition:color .3s;cursor:default}
+ .about-contact-item svg{width:16px;height:16px;flex-shrink:0;opacity:.5}
+ .about-contact-item:hover{color:#e8e8ea}
+ .about-skills{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
+ .about-skills span{padding:4px 14px;border:1px solid rgba(255,255,255,.06);border-radius:14px;font-size:12px;color:#888;letter-spacing:.3px}
+ .works{padding:100px 0 140px}
+ .filter-bar{display:flex;gap:4px;margin-bottom:48px;flex-wrap:wrap;background:rgba(255,255,255,.03);border-radius:10px;padding:4px;border:1px solid rgba(255,255,255,.08);width:fit-content}
+ .filter-btn{padding:10px 24px;border:none;background:transparent;color:#777;font-size:13px;font-family:inherit;letter-spacing:.5px;border-radius:7px;cursor:pointer;transition:all .3s;font-weight:500}
+ .filter-btn:hover{color:#bbb}
+ .filter-btn.active{background:rgba(255,255,255,.08);color:#f0f0f2}
+ .works-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+ 
+ .work-card{position:relative;border-radius:4px;overflow:hidden;background:#1c1c22;cursor:pointer;transition:transform .4s,box-shadow .4s;aspect-ratio:9/16;border:1px solid rgba(255,255,255,.08)}
+ .work-card.image-card{aspect-ratio:4/3}
+ .work-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+ .work-card .placeholder-thumb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:linear-gradient(160deg,#1e1e24,#1a1a2e,#1e1e24);color:#999}
+ .work-card .placeholder-thumb svg{width:40px;height:40px;opacity:.7}
+ .work-card .placeholder-thumb .hint{font-size:11px;letter-spacing:1px;color:#888}
+ .work-card .info{position:absolute;bottom:0;left:0;right:0;padding:48px 20px 20px;background:linear-gradient(to top,rgba(0,0,0,.9) 0%,transparent 100%);opacity:0;transition:opacity .4s}
+ .work-card:hover .info{opacity:1}
+ .work-card .info h4{font-size:14px;font-weight:500;margin-bottom:2px}
+ .work-card .info p{font-size:12px;color:#999}
+ .work-card .badge{position:absolute;top:12px;left:12px;padding:4px 12px;border-radius:4px;font-size:10px;letter-spacing:.5px;font-weight:600;text-transform:uppercase;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);color:#999;border:1px solid rgba(255,255,255,.06)}
+ .work-card .badge.highlight{color:#b8b8ff;border-color:rgba(168,168,255,.2)}
+ .work-card .play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;transition:all .3s;opacity:.6}
+ .work-card:hover .play-icon{opacity:1;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+ .work-card .play-icon svg{width:18px;height:18px;margin-left:2px}
+.work-card .placeholder-thumb{position:relative;z-index:2;transition:opacity .5s;background-size:cover;background-position:center}
+ footer{padding:80px 0 40px;border-top:1px solid rgba(255,255,255,.04)}
+ .footer-inner{display:flex;justify-content:space-between;align-items:flex-end}
+ .footer-left h3{font-size:22px;font-weight:600;letter-spacing:-.3px;margin-bottom:4px}
+ .footer-left p{font-size:14px;color:#666}
+ .footer-right{display:flex;gap:24px;align-items:center}
+ .footer-right a{font-size:13px;color:#888;transition:color .3s}
+ .footer-right a:hover{color:#e8e8ea}
+ .footer-copy{margin-top:60px;font-size:12px;color:#444;text-align:center;letter-spacing:.5px}
+ @media(max-width:1400px){.works-grid{grid-template-columns:repeat(3,1fr)}}
+ @media(max-width:1100px){.about-inner{grid-template-columns:1fr;gap:40px}.about-avatar{width:200px;height:240px}.works-grid{grid-template-columns:repeat(2,1fr)}.container{padding:0 32px}nav{padding:16px 32px}nav.scrolled{padding:12px 32px}}
+ @media(max-width:700px){.works-grid{grid-template-columns:1fr 1fr;gap:12px}.nav-links{display:none}.container{padding:0 20px}nav{padding:14px 20px}nav.scrolled{padding:10px 20px}.hero h1{font-size:36px}}
+ .video-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}.video-modal.open{opacity:1;pointer-events:all}.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.92)}.modal-close{position:absolute;top:24px;right:24px;z-index:3;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:transparent;color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}.modal-close:hover{background:rgba(255,255,255,.1)}.modal-content{position:relative;border-radius:8px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.6)}.modal-content video{max-width:90vw;max-height:80vh;display:block;background:#000}.modal-controls{width:100%;padding:16px 24px;background:#121214;display:flex;align-items:center;gap:14px;border-top:1px solid rgba(255,255,255,.06)}.modal-controls button{background:none;border:none;color:#ccc;cursor:pointer;padding:4px;display:flex;align-items:center;font-size:14px;transition:color .2s}.modal-controls button:hover{color:#fff}.modal-progress{flex:1;height:4px;background:#333;border-radius:2px;cursor:pointer;position:relative}.modal-progress-fill{height:100%;background:linear-gradient(90deg,#6c6cff,#a8a8ff);border-radius:2px;width:0%}.modal-time{font-size:12px;color:#888;font-variant-numeric:tabular-nums;min-width:90px;text-align:right}
+.work-card .thumb{width:100%;display:block}
+
+.modal-name{font-size:13px;color:#999;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.work-card .work-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s;z-index:1;pointer-events:none}.work-card:hover .work-video{opacity:1}
+.work-card:hover .placeholder-thumb{opacity:0;transition:opacity .5s}.work-card.hidden{display:none}
+
+
+.hero h1 .highlight{background:linear-gradient(135deg,#a8a8ff,#6c6cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+</style>
+ </head>
+ <body>
+ <nav id=navbar>
+ <div class=nav-logo>陈梦婷 <span>.</span></div>
+ <div class=nav-links>
+ <a href=#about>关于</a>
+ <a href=#works>作品</a>
+
+ </div>
+ <button class=nav-cta onclick="navigator.clipboard.writeText('mengting02468@163.com');alert('邮箱已复制: mengting02468@163.com')">联系我</button>
+ </nav>
+ <section class=hero id=hero>
+ <div class=hero-bg>
+ <video id=hero-video autoplay muted loop playsinline preload=metadata>
+ <source src=assets/hero-bg.mp4 type=video/mp4>
+ </video>
+ </div>
+ <div class=hero-fallback></div>
+ <div class=hero-grid></div>
+ <div class=hero-overlay></div>
+ <div class=hero-content>
+ <div class=hero-tag>SLG 买量创意 &middot; UA Video</div>
+ <h1>SLG 海外买量<br><span class=highlight>视频设计师</span></h1>
+ <p>专注海外 SLG 手游的买量视频素材创作，覆盖创意、素材、剪辑、成片全流程</br>熟练运用 AI 图片、视频生成工具制作AI素材</p>
+ <button class=hero-cta onclick="document.getElementById('works').scrollIntoView({behavior:'smooth'})">
+ 查看作品
+ <svg width=14 height=14 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2><polyline points="12 5 19 12 12 19"/></svg>
+ </button>
+ </div>
+ <div class=hero-scroll>
+ <span>滚动</span>
+ <div class=line></div>
+ </div>
+ </section>
+ <section class=about id=about>
+ <div class=container>
+ <div class=section-label>关于我</div>
+ <div class=about-inner>
+ <div class=about-avatar>
+ <img src=assets/me/me.jpg alt="陈梦婷" loading=lazy>
+ </div>
+ <div class=about-text>
+ <h3>陈梦婷</h3>
+ <div class=role>SLG 游戏买量视频设计师</div>
+ <div class=bio><p>拥有 2 年 <strong>海外 SLG 手游买量视频设计</strong>经验，擅长从 <strong>引擎渲染</strong>（Unity 3D）到 <strong>AE合成</strong>的全流程制作。熟练运用 AI 图片、视频生成工具制作AI素材。多款素材达成显著 CPI 优化与留存提升，擅长数据驱动的创意迭代。</p></div>
+ <div class=about-stats>
+ <div class=about-stat><h4>80+</h4><p>已投放素材</p></div>
+ <div class=about-stat><h4>20+</h4><p>AI素材</p></div>
+ <div class=about-stat><h4>2+</h4><p>年行业经验</p></div>
+ </div>
+ <div class=about-skills>
+ <span>Unity</span><span>After Effects</span><span>Premiere Pro</span><span>Photoshop</span><span>Maya</span><span>COCOS</span><span>AI Video</span><span>Motion Design</span>
+ </div>
+ </div>
+ <div class=about-contact>
+ <div class=about-contact-item>
+ <svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=16 height=16><rect x=2 y=4 width=20 height=16 rx=2/><path d="M22 4l-10 8L2 4"/></svg>
+ mengting02468@163.com
+ </div>
+ <div class=about-contact-item>
+ <svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=16 height=16><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx=12 cy=10 r=3/></svg>
+ 广东省 | 深圳市
+ </div>
+ <div class=about-contact-item>
+ <svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=16 height=16><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+ 本科 | 广东药科大学 | 数字媒体技术
+ </div>
+
+ </div>
+ </div>
+ </div>
+ </section>
+ <section class=works id=works>
+ <div class=container>
+ <div class=section-label>作品集</div>
+ <h2 class=section-title>精选作品</h2>
+ <p class=section-sub>SLG 买量视频素材 · AI 视觉资产</p>
+ <div class=filter-bar id=filterBar>
+ <button class="filter-btn active" data-filter=all>全部</button>
+ <button class=filter-btn data-filter=engine>引擎素材</button>
+ <button class=filter-btn data-filter=ai>AI 素材</button>
+ <button class=filter-btn data-filter=top>数据优秀</button>
+  <button class=filter-btn data-filter=others>其他</button>
+ </div>
+ <div class=works-grid id=worksGrid>
+ 
+ <div class="work-card" data-category="engine,top"><video class=work-video src=assets/videos/engine/P10-基础模拟经营-僵尸很曼妙1080X1920——20260109-Jade-Lillian-Ea.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>模拟经营 · 僵尸</span></div><div class="badge highlight">引擎 · 数据优秀</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>模拟经营 · 僵尸</h4><p>引擎渲染 · 数据优秀</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P10-类KS-尸壳郎1080X1920——20260402-Jade-Lillian-Ea.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>类KS · 尸壳郎</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>类KS · 尸壳郎</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine,top"><video class=work-video src=assets/videos/engine/P11-尸潮-模拟经营-丧尸爬塔1080X1920——20260525-Jade-Lillian-U.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>尸潮 · 丧尸爬塔</span></div><div class="badge highlight">引擎 · 数据优秀</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>尸潮 · 丧尸爬塔</h4><p>引擎渲染 · 数据优秀</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-001-批量疏通气泡-青挖白挖1080X1920——20250815-Jade-Lillian-U.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>疏通气泡 · 青挖白挖</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>疏通气泡 · 青挖白挖</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-批量解压采集行为-切个大石头1080X1920——20250403-Jade-Jevan-E.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>解压采集 · 切石头</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>解压采集 · 切石头</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-缺氧压力-ARPG建造-塑料袋1080X1920——20250221-Jade-Elodie-E.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>ARPG建造 · 塑料袋</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>ARPG建造 · 塑料袋</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-缺氧压力-Planetbase建造-超级建建建1080X1920——20241205-Jade-Elodie-J.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>Planetbase建造</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>Planetbase建造</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/CC-精灵灵魂-画线圈地玩法-微观世界1080X1920——20240805-Jade-Elodie-J.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>精灵灵魂 · 微观世界</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>精灵灵魂 · 微观世界</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-缺氧压力-建造氛围-宇宙矿工1080X1920——20250305-Jade-Elodie-M.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>建造氛围 · 宇宙矿工</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>建造氛围 · 宇宙矿工</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P4-祖玛玩法-破碎爽感-细狗王子1080X1920——20240909-Jade-Jevan-N.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>祖玛 · 细狗王子</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>祖玛 · 细狗王子</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P5-精灵灵魂-摆放座位-宝宝巴士1080X1920——20241223-Jade-Elodie-N.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>精灵灵魂 · 宝宝巴士</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>精灵灵魂 · 宝宝巴士</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-缺氧压力-拔钉子-蓝钉格尔1080X1920——20241127-Jade-Jevan-E.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>拔钉子 · 蓝钉格尔</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>拔钉子 · 蓝钉格尔</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-缺氧压力-挪车作战-宇宙车站1080X1920——20241231-Jade-Elodie-J.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>挪车 · 宇宙车站</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>挪车 · 宇宙车站</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-缺氧压力-方块铺路-俄罗斯地块1080X1920——20250213-Jade-Elodie-M.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>方块铺路 · 俄罗斯</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>方块铺路 · 俄罗斯</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-缺氧压力-星球跳跃-超级跳跳跳1080X1920——20241213-Jade-Elodie-M.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>星球跳跃 · 超级跳跳</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>星球跳跃 · 超级跳跳</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-缺氧压力-移动六边形建造-六边形行星1080X1920——20250318-Jade-Harry-E.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>六边形 · 行星</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>六边形 · 行星</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P6-转刀模拟经营-氧气流水线1080X1920——20260123-Jade-Felix-Ea.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>转刀模拟 · 流水线</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>转刀模拟 · 流水线</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P8-4X拓张打斗-没酒啦1080X1920——20250430-Jade-Jevan-N.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>4X拓张 · 没酒啦</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>4X拓张 · 没酒啦</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P8-WG题材-类KS-丛林湿地1080X1920——20250527-Jade-Jevan-J.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>WG题材 · 丛林湿地</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>WG题材 · 丛林湿地</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine,top"><video class=work-video src=assets/videos/engine/P8-左右横移-打不过就摇人1080X1920——20250625-Jade-Lilian-C.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>左右横移 · 摇人</span></div><div class="badge highlight">引擎 · 数据优秀</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>左右横移 · 摇人</h4><p>引擎渲染 · 数据优秀</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P8-故事叙事-赌狗风云1920X1080——20250605-Jade-Jevan-Y.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>故事叙事 · 赌狗</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>故事叙事 · 赌狗</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P9-拯救狗狗-狗绳1080X1920——20251112-Jade-Harry-E.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>拯救狗狗 · 狗绳</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>拯救狗狗 · 狗绳</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P9-迪士尼题材-左右横移-扁扁地走开1080X1920——20251016-Jade-Lillian-J.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>迪士尼 · 扁扁走开</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>迪士尼 · 扁扁走开</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine,top"><video class=work-video src=assets/videos/engine/P9题材-批量薅羊毛-羊毛主理人1080X1920——20251103-Jade-Lillian-Felix-C.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>批量薅羊毛 · 主理人</span></div><div class="badge highlight">引擎 · 数据优秀</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>批量薅羊毛 · 主理人</h4><p>引擎渲染 · 数据优秀</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P9题材-连线刺破气球-丝瓜小火1080X1920——20250911-Jade-Lillian-U.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>连线刺破 · 丝瓜小火</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>连线刺破 · 丝瓜小火</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine"><video class=work-video src=assets/videos/engine/P9题材-迭代牛肉串-淋杆菇1080X1920——20260204-Jade-Felix-U.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>牛肉串 · 淋杆菇</span></div><div class=badge>Engine</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>牛肉串 · 淋杆菇</h4><p>引擎渲染素材</p></div></div>
+ <div class="work-card" data-category="engine,top"><video class=work-video src=assets/videos/engine/PKM-精灵灵魂-画线套物玩法-老鼠偷鸡蛋1080X1920——20240813-Jade-Elodie-T.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>精灵灵魂 · 老鼠偷蛋</span></div><div class="badge highlight">引擎 · 数据优秀</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>精灵灵魂 · 老鼠偷蛋</h4><p>引擎渲染 · 数据优秀</p></div></div>
+  <div class="work-card" data-category="engine,top"><video class=work-video src=assets/videos/engine/P6-缺氧压力-左右横移-小小星球1080X1920——20241111-Jade-Elodie-M.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><polygon points="23 7 16 12 23 17 23 7"/><rect x=1 y=5 width=15 height=14 rx=2/></svg><span class=hint>横移 · 小小星球</span></div><div class="badge highlight">引擎 · 数据优秀</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>横移 · 小小星球</h4><p>引擎渲染 · 数据优秀</p></div></div>
+ <div class="work-card" data-category="ai"><video class=work-video src=assets/videos/ai/P10-AI预告片-瘟疫公司1080X1920——20260429-Jade-Luca-Felix-Lillian-J.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>AI预告 · 瘟疫公司</span></div><div class=badge>AI 素材</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>AI预告 · 瘟疫公司</h4><p>AI 生成素材</p></div></div>
+ <div class="work-card" data-category="ai,top"><video class=work-video src=assets/videos/ai/P10-AI预告片-逃生-扮猪吃饲料(结尾)1080X1920——20260511-Jade-J.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>AI预告 · 逃生</span></div><div class="badge highlight">AI · 数据优秀</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>AI预告 · 逃生</h4><p>AI 生成 · 数据优秀</p></div></div>
+ <div class="work-card" data-category="ai,top"><video class=work-video src=assets/videos/ai/P11-模拟经营-(新氛围02)丧尸爬塔1080X1920——20260525-Jade-Lillian-U.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>AI · 丧尸爬塔</span></div><div class="badge highlight">AI · 数据优秀</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>AI · 丧尸爬塔</h4><p>AI 生成 · 数据优秀</p></div></div>
+ <div class="work-card" data-category="ai"><video class=work-video src=assets/videos/ai/P6-AI角色展示-机甲穿戴1080X1920——20250115-Jade.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>AI角色 · 机甲穿戴</span></div><div class=badge>AI 素材</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>AI角色 · 机甲穿戴</h4><p>AI 生成素材</p></div></div>
+ <div class="work-card" data-category="ai"><video class=work-video src=assets/videos/ai/P9-AI升级-变形铜刚1080X1920——20251210-Lillian-Jade.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>AI升级 · 变形铜刚</span></div><div class=badge>AI 素材</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>AI升级 · 变形铜刚</h4><p>AI 生成素材</p></div></div>
+ <div class="work-card" data-category="ai"><video class=work-video src=assets/videos/ai/P9-AI对话-牛仔家中坐1080X1920——20251224-Jade.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>AI对话 · 牛仔家中</span></div><div class=badge>AI 素材</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>AI对话 · 牛仔家中</h4><p>AI 生成素材</p></div></div>
+ <div class="work-card" data-category="ai"><video class=work-video src=assets/videos/ai/P9-AI环境展示-牛仔马车1080X1920——20260212-Jade.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>AI环境 · 牛仔马车</span></div><div class=badge>AI 素材</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>AI环境 · 牛仔马车</h4><p>AI 生成素材</p></div></div>
+ <div class="work-card" data-category="ai"><video class=work-video src=assets/videos/ai/P9-AI环境展示-颁奖牛马小镇1080X1920——20251229-Jade-Lillian.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>AI环境 · 颁奖牛马</span></div><div class=badge>AI 素材</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>AI环境 · 颁奖牛马</h4><p>AI 生成素材</p></div></div>
+ <div class="work-card" data-category="ai,top"><video class=work-video src=assets/videos/ai/P9-AI视频-美女骑马回头1080X1920——20251210-Jade.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>AI视频 · 美女骑马</span></div><div class="badge highlight">AI · 数据优秀</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>AI视频 · 美女骑马</h4><p>AI 生成 · 数据优秀</p></div></div>
+ <div class="work-card" data-category="ai"><video class=work-video src=assets/videos/ai/P9题材孵化-AI像素风横版-赏金猎人1080X1920——20260617-Jade.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>AI像素 · 赏金猎人</span></div><div class=badge>AI 素材</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>AI像素 · 赏金猎人</h4><p>AI 生成素材</p></div></div>
+ <div class="work-card" data-category="ai"><video class=work-video src=assets/videos/ai/流沙压力-埋埋埋1080X1920——20260713-Jade-Jevan.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>流沙压力 · 埋埋埋</span></div><div class=badge>AI 素材</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>流沙压力 · 埋埋埋</h4><p>AI 生成素材</p></div></div>
+ <div class="work-card" data-category="ai"><video class=work-video src=assets/videos/ai/流沙压力-沙沙沙1080X1920——20260706-Jade-Jevan.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 12v2a8 8 0 0 1-16 0v-2"/><line x1=12 y1=18 x2=12 y2=22/><line x1=8 y1=22 x2=16 y2=22/></svg><span class=hint>流沙压力 · 沙沙沙</span></div><div class=badge>AI 素材</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>流沙压力 · 沙沙沙</h4><p>AI 生成素材</p></div></div>
+ <div class="work-card" data-category="others"><video class=work-video src=assets/videos/others/BCS_DynamicLogo.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><circle cx=12 cy=12 r=10/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class=hint>BCS 动态Logo</span></div><div class=badge>品牌动画</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>BCS 动态Logo</h4><p>品牌 / 动态设计</p></div></div>
+ <div class="work-card" data-category="others"><video class=work-video src=assets/videos/others/JDWL.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><circle cx=12 cy=12 r=10/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class=hint>JDWL 品牌</span></div><div class=badge>品牌动画</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>JDWL 品牌</h4><p>品牌 / 动态设计</p></div></div>
+ <div class="work-card" data-category="others"><video class=work-video src=assets/videos/others/JDxNZWL.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><circle cx=12 cy=12 r=10/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class=hint>JDxNZWL 联名</span></div><div class=badge>品牌动画</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>JDxNZWL 联名</h4><p>品牌 / 动态设计</p></div></div>
+ <div class="work-card" data-category="others"><video class=work-video src=assets/videos/others/JKZXxGDPU.mp4 muted loop playsinline preload=none></video><div class=placeholder-thumb><svg viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=1.5 width=40 height=40><circle cx=12 cy=12 r=10/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class=hint>JKZXxGDPU 合作</span></div><div class=badge>品牌动画</div><div class=play-icon><svg viewBox="0 0 24 24" fill=currentColor width=18 height=18><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class=info><h4>JKZXxGDPU 合作</h4><p>品牌 / 动态设计</p></div></div>
+</section>
+ <footer id=contact>
+ <div class=container>
+ <div class=footer-inner>
+ <div class=footer-left>
+ <h3>期待合作</h3>
+ <p>欢迎联系，探讨合作机会</p>
+ </div>
+ 
+ </div>
+ <div class=footer-copy>&copy; 2026 陈梦婷 · 保留所有权利</div>
+ </div>
+ </footer>
+ <script>
+ const navbar=document.getElementById('navbar');
+ window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+ const video=document.getElementById('hero-video');
+ if(video){setTimeout(()=>{if(video.readyState<2){document.querySelector('.hero-fallback').style.display='block'}},2000)}
+const workCards=document.querySelectorAll('.work-card');
+const vidObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{const vid=entry.target.querySelector('.work-video');if(vid&&entry.isIntersecting&&!vid.dataset.loaded){vid.dataset.loaded='1';vid.preload='metadata';vid.load()}})},{rootMargin:'50px'});
+workCards.forEach(c=>{const vid=c.querySelector('.work-video');if(vid){vidObserver.observe(c);c.addEventListener('mouseenter',()=>{if(vid.readyState<1){vid.preload='metadata';vid.load()}try{vid.currentTime=0;vid.play()}catch(e){}});c.addEventListener('mouseleave',()=>{vid.pause();vid.currentTime=0});c.addEventListener('click',()=>{var s=vid.getAttribute('src');var t=(c.querySelector('.info h4')||{}).textContent;if(s)openVideoModal(s,t||'')});vid.addEventListener('loadeddata',function(){var pl=c.querySelector('.placeholder-thumb');if(pl)pl.style.display='none';this.style.opacity='1'})}});
+ const filterBtns=document.querySelectorAll('.filter-btn');
+ const worksGrid=document.getElementById('worksGrid');
+ 
+ const allCards=document.querySelectorAll('.work-card');
+ filterBtns.forEach(btn=>{
+ btn.addEventListener('click',()=>{
+ filterBtns.forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ const filter=btn.dataset.filter;
+ 
+ worksGrid.style.display='grid';
+ allCards.forEach(card=>{if(card.dataset.category==='image')return;if(filter==='all'){card.classList.remove('hidden')}else{const cats=card.dataset.category.split(',');card.classList.toggle('hidden',!cats.includes(filter))}})
+ })
+ });
+ // Modal
+var modal,modalVideo,modalProgressFill,modalTime;
+function openVideoModal(src,title){
+if(!modal||!modalVideo){modal=document.getElementById('videoModal');modalVideo=document.getElementById('modalVideo');modalProgressFill=document.getElementById('modalProgressFill');modalTime=document.getElementById('modalTime')}
+modalVideo.src=src;modalVideo.muted=false;document.getElementById('modalName').textContent=title||'';
+modal.classList.add('open');
+modalVideo.play().catch(function(){});
+modalVideo.ontimeupdate=updateModalProgress;
+}
+function closeVideoModal(e){
+if(e&&e.target.closest('.modal-content'))return;
+modalVideo.pause();modal.classList.remove('open');
+modalVideo.src='';
+}
+function toggleModalPlay(){
+if(modalVideo.paused)modalVideo.play();else modalVideo.pause();
+}
+function toggleModalMute(){
+modalVideo.muted=!modalVideo.muted;
+}
+function updateModalProgress(){
+var p=modalVideo.currentTime/modalVideo.duration*100||0;
+modalProgressFill.style.width=p+'%';
+function fmt(t){var m=Math.floor(t/60);var s=Math.floor(t%60);return m+':'+(s<10?'0':'')+s}
+modalTime.textContent=fmt(modalVideo.currentTime)+' / '+fmt(modalVideo.duration||0);
+}
+function seekModalVideo(e){
+var rect=e.currentTarget.getBoundingClientRect();
+var ratio=(e.clientX-rect.left)/rect.width;
+modalVideo.currentTime=ratio*modalVideo.duration;
+}
+// Click work cards to open modal</script>
+<div class=video-modal id=videoModal onclick="closeVideoModal(event)"><div class=modal-backdrop></div><div class=modal-content><button class=modal-close onclick="closeVideoModal()">&times;</button><video id=modalVideo onclick="toggleModalPlay()"></video><div class=modal-controls><button onclick="toggleModalPlay()" id=modalPlayBtn><svg width=16 height=16 viewBox="0 0 24 24" fill=currentColor><polygon points="5 3 19 12 5 21 5 3"/></svg></button><button onclick="toggleModalMute()" id=modalMuteBtn><svg width=16 height=16 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button><div class=modal-progress onclick="seekModalVideo(event)"><div class=modal-progress-fill id=modalProgressFill></div></div><span class=modal-name id=modalName></span><span class=modal-time id=modalTime>0:00 / 0:00</span></div></div></div>
+</body>
+ </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
